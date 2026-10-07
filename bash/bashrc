@@ -1,0 +1,29 @@
+# shellcheck shell=bash
+# Git Bash configuration. Sourced from ~/.bashrc by install.sh.
+
+case $- in
+  *i*) ;;
+  *) return ;;
+esac
+
+export DIARY_DIR="${DIARY_DIR:-$HOME/diary}"
+export EDITOR=vim
+export VISUAL=vim
+export LESS='-R -i'
+
+HISTSIZE=10000
+HISTFILESIZE=20000
+HISTCONTROL=ignoreboth
+shopt -s histappend checkwinsize
+
+alias ls='ls --color=auto -F'
+alias ll='ls -lh'
+alias la='ls -lhA'
+alias grep='grep --color=auto'
+
+# diary          today's entry
+# diary -1       yesterday's entry
+# diary 2026-10-07
+diary() {
+  vim -c "Diary $*"
+}

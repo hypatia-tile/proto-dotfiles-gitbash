@@ -1,0 +1,54 @@
+" Vim configuration for Git Bash. Sourced from ~/.vimrc by install.sh.
+
+set encoding=utf-8
+scriptencoding utf-8
+set fileencodings=ucs-bom,utf-8,cp932,euc-jp,latin1
+set fileformats=unix,dos
+
+" Load plugin/ from this repository instead of linking it into ~/.vim.
+let &runtimepath = expand('<sfile>:p:h') . ',' . &runtimepath
+
+" Keep swap and undo files out of the directories being edited.
+let s:state = expand('~/.cache/vim')
+for s:sub in ['swap', 'undo']
+  if !isdirectory(s:state . '/' . s:sub)
+    call mkdir(s:state . '/' . s:sub, 'p')
+  endif
+endfor
+let &directory = s:state . '/swap//'
+let &undodir = s:state . '/undo'
+set undofile
+
+syntax enable
+filetype plugin indent on
+
+set hidden
+set autoread
+set backspace=indent,eol,start
+set history=1000
+set ruler
+set showcmd
+set laststatus=2
+set wildmenu
+set scrolloff=3
+set display=lastline
+set belloff=all
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set autoindent
+set formatoptions+=mMj
+set nrformats-=octal
+set ttimeout
+set ttimeoutlen=50
+
+" Bar cursor in Insert mode, block cursor elsewhere (mintty understands these).
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[2 q"
+
+let mapleader = ' '
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>

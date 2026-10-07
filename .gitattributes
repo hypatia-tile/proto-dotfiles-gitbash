@@ -1,0 +1,2 @@
+# Bash and Vim choke on CRLF, so keep LF even with core.autocrlf=true.
+* text=auto eol=lf
